@@ -30,7 +30,7 @@ html{
   height:100%;
 }
 body{
-  margin:0;background:var(--bg);color:var(--ink);
+  margin:0;background:transparent;color:var(--ink); /* фон страницы задаёт html, чтобы не перекрывать слой с фото */
   font-family:var(--body);font-size:1.05rem;line-height:1.7;
   height:100%;
   overflow-y:scroll;
@@ -47,8 +47,15 @@ body{
    ------------------------------------------------------------ */
 .photo-bg{
   position:fixed;inset:0;z-index:-1;
-  background:var(--bg) url('bg.jpg') center top / auto 100dvh no-repeat;
+  /* cover — картинка всегда заполняет слой целиком, без полос сверху/снизу,
+     как бы браузер ни считал высоту экрана с плавающей адресной строкой */
+  background:var(--bg) url('bg.jpg') center top / cover no-repeat;
 }
+/* на широких экранах (планшет горизонтально, десктоп) — по высоте, чтобы не резать рамку */
+@media (min-aspect-ratio: 1080/1828){
+  .photo-bg{background-size:auto 100%}
+}
+html{background:var(--bg)}
 
 /* ============================================================
    ПАДАЮЩИЕ ИСКРЫ — тихий постоянный слой поверх фона, под текстом
@@ -440,15 +447,17 @@ button{font:inherit;cursor:pointer}
    остаётся внутри рамки на любом телефоне.
    ============================================================ */
 .section,.hero,.footer{
+  height:100vh;min-height:100vh;padding:17vh 0 16vh;
   height:100dvh;min-height:100dvh;box-sizing:border-box;
-  padding:20dvh 0 15dvh;
+  padding:17dvh 0 16dvh;
   display:flex;flex-direction:column;justify-content:center;align-items:center;
   overflow:hidden;border:0;
 }
 .section--scrolly{overflow:hidden}
 .section > .measure,.hero > .frame4,.footer > .frame4{
-  width:min(37dvh, 100vw - 2.5rem);max-width:none;margin:0 auto;
-  max-height:65dvh;overflow-y:auto;scrollbar-width:none;
+  width:min(39vh, 100vw - 2.5rem);max-height:67vh;
+  width:min(39dvh, 100vw - 2.5rem);max-width:none;margin:0 auto;
+  max-height:67dvh;overflow-y:auto;scrollbar-width:none;
 }
 .section > .measure::-webkit-scrollbar,.hero > .frame4::-webkit-scrollbar,.footer > .frame4::-webkit-scrollbar{display:none}
 /* своя рамка и белые карточки больше не нужны — рамка есть на фото */
