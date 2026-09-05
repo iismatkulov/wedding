@@ -1,0 +1,908 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ислом и Сабрина — Свадьба · 17 октября 2027</title>
+<meta name="description" content="Приглашение на свадьбу Ислома и Сабрины. 17 октября 2027 года. Самарканд, банкетный зал «Majestic».">
+<meta name="theme-color" content="#faf8f4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f8f4;
+  --ink:#2f3a2e;
+  --ink-soft:#5d6a5a;
+  --accent:#b8975b;
+  --line:rgba(184,151,91,.45);
+
+  --script:'Great Vibes',cursive;
+  --display:'Cormorant Garamond',serif;
+  --body:'EB Garamond',Georgia,serif;
+
+  --measure:32rem;
+  --space-1:.5rem; --space-2:1rem; --space-3:1.75rem; --space-4:2.75rem; --space-5:4.5rem;
+}
+*{box-sizing:border-box}
+html{
+  scroll-snap-type:y mandatory;
+  height:100%;
+}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--body);font-size:1.05rem;line-height:1.7;
+  height:100%;
+  overflow-y:scroll;
+  scroll-behavior:smooth;
+}
+
+/* ------------------------------------------------------------
+   ФОН-ЗАГЛУШКА С РАЗМЫТИЕМ
+   Сейчас здесь нейтральный градиент вместо фото — просто чтобы
+   было видно, как будет выглядеть блюр. Чтобы поставить своё
+   фото: замените background в .photo-bg на
+     background:url('ваше-фото.jpg') center/cover;
+   Файл фото положите рядом с этим HTML-файлом.
+   ------------------------------------------------------------ */
+.photo-bg{
+  position:fixed;inset:0;z-index:-1;
+  background:var(--bg) url('bg.jpg') center top / auto 100dvh no-repeat;
+}
+
+/* ============================================================
+   ПАДАЮЩИЕ ИСКРЫ — тихий постоянный слой поверх фона, под текстом
+   ============================================================ */
+.sparks{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.spark{
+  position:absolute;top:-5%;
+  width:var(--size,3px);height:var(--size,3px);
+  border-radius:50%;
+  background:radial-gradient(circle,#f0d9b0 0%,var(--accent) 60%,transparent 100%);
+  opacity:0;
+  animation:sparkFall var(--dur,9s) linear var(--delay,0s) infinite;
+}
+@keyframes sparkFall{
+  0%{transform:translateY(0) translateX(0);opacity:0}
+  8%{opacity:var(--peak,.85)}
+  92%{opacity:var(--peak,.85)}
+  100%{transform:translateY(110vh) translateX(var(--drift,20px));opacity:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .spark{animation:none;display:none}
+}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.15}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+
+.section{
+  padding:var(--space-5) var(--space-2);text-align:center;
+  min-height:100dvh;
+  display:flex;flex-direction:column;justify-content:center;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+}
+/* секции с длинным списком (программа дня) не помещаются в один
+   экран целиком — разрешаем внутри них вертикальный скролл,
+   а привязка (snap) всё равно держит переход между секциями чётким */
+.section--scrolly{
+  overflow-y:auto;
+}
+.measure{max-width:var(--measure);margin:0 auto}
+.eyebrow{display:block;font-family:var(--display);font-style:italic;font-size:1.15rem;color:var(--accent);margin-bottom:var(--space-1)}
+.heading{font-size:clamp(1.75rem,6vw,2.4rem)}
+.lead{color:var(--ink-soft);margin-top:var(--space-1)}
+.rule{width:1px;height:2.5rem;background:var(--line);margin:var(--space-3) auto}
+
+/* hero */
+.hero{
+  padding:var(--space-5) var(--space-2);text-align:center;
+  min-height:100dvh;
+  display:flex;flex-direction:column;justify-content:center;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+}
+.hero-names{
+  display:block;width:100%;max-width:26rem;margin:0 auto;
+}
+.hero-names svg{width:100%;height:auto;overflow:visible}
+.hero-names text{
+  font-family:var(--script);font-size:64px;
+  fill:transparent;
+  stroke:var(--accent);
+  stroke-width:1.3;
+}
+.hero-names .amp{display:block;font-family:var(--display);font-style:italic;font-size:.4em;color:var(--accent);margin:.1em 0}
+.hero-names .amp-text{font-family:var(--display);font-style:italic;font-size:40px;stroke:var(--accent)}
+
+/* ------- кустовые розы вокруг баннера с именами ------- */
+.hero{position:relative;overflow:clip}
+.hero-bloom{position:absolute;width:170px;height:170px;pointer-events:none;z-index:0}
+.hero-bloom{width:130px;height:130px}
+.hero-bloom.tl{top:0;left:0}
+.hero-bloom.br{bottom:0;right:0;transform:scaleX(-1)}
+@media (min-width:640px){.hero-bloom{width:170px;height:170px}}
+.hero-bloom .stem{fill:none;stroke:#8a9b6e;stroke-width:1.4;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.hero-bloom .leaf{fill:#a8bd88;opacity:0;transform:scale(.3);transform-box:fill-box;transform-origin:center}
+.hero-bloom .petal-outer{fill:#d98f8a}
+.hero-bloom .petal-mid{fill:#e3a6a1}
+.hero-bloom .petal-inner{fill:#eebdb8}
+.hero-bloom .bloom{opacity:0;transform:scale(.25);transform-box:fill-box;transform-origin:center}
+.hero-bloom .bud{opacity:0;transform:scale(.2);transform-box:fill-box;transform-origin:center}
+.animate .hero-bloom .stem{animation:stemDraw 1.1s ease-out forwards}
+.animate .hero-bloom .leaf{animation:leafPop .6s cubic-bezier(.22,1.4,.4,1) forwards}
+.animate .hero-bloom .bloom{animation:bloomPop .7s cubic-bezier(.22,1.4,.4,1) forwards}
+.animate .hero-bloom .bud{animation:bloomPop .55s cubic-bezier(.22,1.4,.4,1) forwards}
+@keyframes stemDraw{to{stroke-dashoffset:0;opacity:1}}
+@keyframes leafPop{to{opacity:1;transform:scale(1)}}
+@keyframes bloomPop{to{opacity:1;transform:scale(1)}}
+.hero-date{margin-top:var(--space-2);font-size:1.3rem;color:var(--ink-soft)}
+.hero-date small{display:block;font-size:.7em;font-style:italic;margin-top:.2rem}
+.hero-greet{margin-top:var(--space-3);color:var(--ink-soft);max-width:28rem;margin-inline:auto}
+
+/* countdown */
+.cd-row{display:flex;justify-content:center;gap:1.5rem;margin-top:var(--space-3)}
+.cd-num{font-family:var(--display);font-size:2.2rem;line-height:1}
+.cd-label{display:block;font-size:.85rem;color:var(--ink-soft);margin-top:.2rem}
+
+/* story / timeline — plain rows */
+.rows{margin-top:var(--space-3);text-align:left}
+.row{display:grid;grid-template-columns:5rem 1fr;gap:var(--space-2);padding:var(--space-2) 0;border-top:1px solid var(--line)}
+.rows .row:last-child{border-bottom:1px solid var(--line)}
+.row-mark{font-family:var(--display);font-size:1.2rem;color:var(--accent);text-align:right}
+.row-h{font-size:1.1rem;margin-bottom:.2rem}
+.row-text{color:var(--ink-soft);font-size:.95rem}
+
+/* venue */
+.venue-name{font-size:2rem;margin-top:var(--space-2)}
+.btn-row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:var(--space-3)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.75rem 1.5rem;border:1px solid var(--accent);
+  text-decoration:none;font-size:.95rem;font-family:var(--display);
+  color:var(--ink);letter-spacing:.04em;background:rgba(255,255,255,.4);
+  transition:all .35s cubic-bezier(.16,1,.3,1);
+  border-radius:2px;position:relative;overflow:hidden;
+}
+.btn::before{
+  content:'';position:absolute;inset:0;background:var(--accent);
+  transform:scaleX(0);transform-origin:right;
+  transition:transform .35s cubic-bezier(.16,1,.3,1);z-index:-1;
+}
+.btn:hover{color:#fff;border-color:var(--accent)}
+.btn:hover::before{transform:scaleX(1);transform-origin:left}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-top:var(--space-3)}
+@media (min-width:640px){.gal{grid-template-columns:repeat(2,1fr);max-width:32rem;margin-inline:auto}}
+.gal img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:var(--line)}
+
+/* rsvp */
+.form{max-width:24rem;margin:var(--space-3) auto 0;text-align:left}
+.field{margin-bottom:var(--space-2)}
+.field label{display:block;font-size:.9rem;color:var(--ink-soft);margin-bottom:.3rem}
+.field input,.field textarea{width:100%;font:inherit;background:transparent;border:none;border-bottom:1px solid var(--line);padding:.5rem 0}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
+.choice{display:flex;gap:1.5rem}
+.form .btn{width:100%;text-align:center;border-color:var(--ink);margin-top:.5rem}
+.status{text-align:center;font-style:italic;color:var(--accent);margin-top:.5rem;min-height:1.4em}
+
+/* footer */
+.footer{
+  padding:var(--space-5) var(--space-2);text-align:center;border-top:1px solid var(--line);
+  min-height:100dvh;
+  display:flex;flex-direction:column;justify-content:center;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+}
+.footer-closing{font-family:var(--display);font-style:italic;font-size:2rem}
+.contacts{margin-top:var(--space-3);display:grid;gap:.5rem}
+.contacts a{text-decoration:none;font-family:var(--display);font-size:1.15rem}
+.contacts small{display:block;font-size:.85rem;color:var(--ink-soft)}
+
+/* ===================================================
+   РАМКА №4 — двойная, углы разомкнуты,
+   с постоянной анимацией "уголки покачиваются".
+   Собрана на чистом CSS (не масштабируемый SVG), поэтому
+   корректно растягивается на любую высоту содержимого —
+   уголки остаются в фиксированном размере в каждом углу,
+   а между ними идёт обычная граница по контуру.
+   =================================================== */
+.frame4{
+  position:relative;margin:1.4rem;padding:1.8rem 1.2rem;
+  background:rgba(250,248,244,.82);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+@media (min-width:640px){.frame4{margin:2rem;padding:2.2rem 1.6rem}}
+
+/* внешний контур — сплошная тонкая рамка, отступает от контента */
+.frame4::before{
+  content:"";position:absolute;inset:-1.1rem;
+  border:1px solid #c9a575;pointer-events:none;
+}
+/* внутренний контур */
+.frame4::after{
+  content:"";position:absolute;inset:-.7rem;
+  border:1px solid #c9a575;opacity:.55;pointer-events:none;
+}
+
+/* уголки — четыре одинаковых декоративных элемента фиксированного
+   размера, не зависящие от высоты секции */
+.frame4-corner{
+  position:absolute;width:78px;height:78px;pointer-events:none;
+  transform-box:content-box;transform-origin:center;
+}
+.frame4-corner::before,.frame4-corner::after{content:"";position:absolute;border-color:#c9a575;border-style:solid}
+.frame4-corner::before{inset:0;border-width:1px 0 0 1px;width:56px;height:32px}
+.frame4-corner::after{inset:10px;border-width:.6px 0 0 .6px;width:44px;height:24px;opacity:.55}
+
+.frame4-corner.tl{top:-1.4rem;left:-1.4rem}
+.frame4-corner.tr{top:-1.4rem;right:-1.4rem;transform:scaleX(-1)}
+.frame4-corner.bl{bottom:-1.4rem;left:-1.4rem;transform:scaleY(-1)}
+.frame4-corner.br{bottom:-1.4rem;right:-1.4rem;transform:scale(-1,-1)}
+@media (min-width:640px){
+  .frame4-corner.tl{top:-2rem;left:-2rem}
+  .frame4-corner.tr{top:-2rem;right:-2rem}
+  .frame4-corner.bl{bottom:-2rem;left:-2rem}
+  .frame4-corner.br{bottom:-2rem;right:-2rem}
+}
+
+.frame4-corner.tl{animation:frame4Breathe 3.6s ease-in-out infinite}
+.frame4-corner.tr{animation:frame4Breathe 3.6s .3s ease-in-out infinite}
+.frame4-corner.bl{animation:frame4Breathe 3.6s .6s ease-in-out infinite}
+.frame4-corner.br{animation:frame4Breathe 3.6s .9s ease-in-out infinite}
+@keyframes frame4Breathe{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+}
+.frame4-corner.tr{animation-name:frame4BreatheX}
+.frame4-corner.bl{animation-name:frame4BreatheY}
+.frame4-corner.br{animation-name:frame4BreatheXY}
+@keyframes frame4BreatheX{0%,100%{transform:scaleX(-1) scale(1)}50%{transform:scaleX(-1) scale(1.1)}}
+@keyframes frame4BreatheY{0%,100%{transform:scaleY(-1) scale(1)}50%{transform:scaleY(-1) scale(1.1)}}
+@keyframes frame4BreatheXY{0%,100%{transform:scale(-1,-1) scale(1)}50%{transform:scale(-1,-1) scale(1.1)}}
+@media (prefers-reduced-motion:reduce){
+  .frame4-corner{animation:none}
+}/* ============================================================
+   ЗАГРУЗОЧНЫЙ ЭКРАН — кольцо-прогресс дочерчивается,
+   затем сменяется текстом (вариант №6 из демо загрузок)
+   ============================================================ */
+#loader{
+  position:fixed;inset:0;z-index:200;background:var(--bg);
+  display:grid;place-items:center;text-align:center;
+  transition:opacity .6s ease,visibility .6s;
+}
+#loader.gone{opacity:0;visibility:hidden;pointer-events:none}
+.l6-ring-wrap{position:relative;opacity:1;transition:opacity .5s .4s}
+#loader.play .l6-ring-wrap{animation:l6hide 0s 1.8s forwards}
+@keyframes l6hide{to{opacity:0;visibility:hidden}}
+/* На загрузке дочерчивается сама рамка логотипа, а не отдельная линия:
+   рамка рисуется штрих за штрихом, буквы проступают после замыкания контура */
+#loader .monogram .ring{stroke-dasharray:1;stroke-dashoffset:1}
+#loader.play .monogram .ring{animation:l6draw 1.6s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes l6draw{to{stroke-dashoffset:0}}
+#loader .monogram text{opacity:0}
+#loader.play .monogram text{animation:l6fadeText .5s 1.3s ease-out forwards}
+@keyframes l6fadeText{to{opacity:1}}
+.l6-text{position:absolute;text-align:center;opacity:0}
+#loader.play .l6-text{animation:l6fade .8s 1.9s ease-out forwards}
+@keyframes l6fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.l6-text span{display:block;font-family:var(--display);font-style:italic;color:var(--accent);font-size:1rem;margin-bottom:.3rem}
+.l6-text strong{display:block;font-family:var(--script);font-size:2.2rem;font-weight:400}
+.l6-hint{
+  position:absolute;left:0;right:0;bottom:14vh;text-align:center;
+  font-family:var(--display);font-style:italic;color:var(--ink-soft);font-size:1rem;
+  opacity:0;pointer-events:none;
+}
+#loader.wait{cursor:pointer}
+#loader.wait .l6-hint{animation:l6hintIn .8s ease-out forwards,l6hintPulse 2.2s 1s ease-in-out infinite}
+@keyframes l6hintIn{to{opacity:1}}
+@keyframes l6hintPulse{0%,100%{opacity:1}50%{opacity:.45}}
+
+/* ============================================================
+   МОНОГРАММА — инициалы I & S, переиспользуемая в hero и в кольце загрузки
+   ============================================================ */
+.monogram{display:block;margin:0 auto}
+.monogram .ring{fill:none;stroke:var(--accent);stroke-width:.9}
+.monogram text{
+  font-family:var(--script);font-weight:400;
+  fill:var(--accent);
+}
+.monogram .letter{font-size:17px}
+.monogram .amp{font-size:10px;opacity:.85}
+/* Адаптивные размеры через clamp() — минимум/предпочтительное/максимум,
+   вместо фиксированных px, которые не масштабируются на очень
+   маленьких (старые телефоны) и очень широких (десктоп) экранах */
+.hero .monogram{
+  width:clamp(44px,12vw,72px);
+  height:clamp(44px,12vw,72px);
+  margin-bottom:.5rem;
+}
+#loader .monogram{
+  width:clamp(64px,18vw,96px);
+  height:clamp(64px,18vw,96px);
+  position:relative;
+}
+
+/* ============================================================
+   ТАЙМЛАЙН — каждый пункт программы дня на отдельном экране
+   со своей тематической анимацией
+   ============================================================ */
+.tl-page{
+  padding:var(--space-5) var(--space-2);text-align:center;
+  min-height:100dvh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  position:relative;
+}
+.tl-art{width:180px;height:180px;margin:0 auto var(--space-3);position:relative}
+.tl-art svg{width:100%;height:100%;overflow:visible}
+.tl-time{font-family:var(--display);font-size:1.6rem;color:var(--accent);letter-spacing:.06em}
+.tl-h{font-size:2rem;margin:.2rem 0 .4rem}
+.tl-text{color:var(--ink-soft);max-width:22rem;margin:0 auto}
+
+/* transform-box:fill-box для всех анимируемых элементов внутри SVG,
+   чтобы поворот/масштаб шли от собственного центра фигуры, а не (0,0) */
+.tl-art *{transform-box:fill-box;transform-origin:center}
+
+/* --- 1. Никох: полумесяц восходит, звёзды мерцают --- */
+.a-nikoh .moon{transform:translateY(14px);opacity:0;animation:nikohMoon 2s .2s ease-out forwards}
+@keyframes nikohMoon{to{transform:translateY(0);opacity:1}}
+.a-nikoh .star{opacity:.2;animation:nikohStar 2.6s ease-in-out infinite}
+.a-nikoh .star:nth-child(2){animation-delay:.4s}
+.a-nikoh .star:nth-child(3){animation-delay:.9s}
+.a-nikoh .star:nth-child(4){animation-delay:1.3s}
+@keyframes nikohStar{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+
+/* --- 2. Встреча гостей: двери распахиваются, свет изнутри --- */
+.a-doors .door.l{transform-origin:left center;animation:doorsOpenL 2.2s .2s cubic-bezier(.4,0,.2,1) infinite alternate}
+.a-doors .door.r{transform-origin:right center;animation:doorsOpenR 2.2s .2s cubic-bezier(.4,0,.2,1) infinite alternate}
+@keyframes doorsOpenL{0%{transform:rotateY(0)}100%{transform:rotateY(-35deg)}}
+@keyframes doorsOpenR{0%{transform:rotateY(0)}100%{transform:rotateY(35deg)}}
+.a-doors .glow{opacity:.25;animation:doorsGlow 2.2s .2s ease-in-out infinite alternate}
+@keyframes doorsGlow{0%{opacity:.15}100%{opacity:.65}}
+
+/* --- 3. Праздничный стол: пар поднимается над угощением --- */
+.a-feast .steam{opacity:0;animation:feastSteam 3s ease-in-out infinite}
+.a-feast .steam:nth-child(2){animation-delay:.7s}
+.a-feast .steam:nth-child(3){animation-delay:1.4s}
+@keyframes feastSteam{0%{opacity:0;transform:translateY(6px) scaleX(1)}30%{opacity:.7}100%{opacity:0;transform:translateY(-32px) scaleX(1.4)}}
+
+/* --- 4. Свадебный торт: ярусы вырастают, свечи мерцают --- */
+.a-cake .tier{transform:translateY(20px);opacity:0;animation:cakeTier .7s ease-out forwards}
+.a-cake .tier:nth-child(1){animation-delay:.1s}
+.a-cake .tier:nth-child(2){animation-delay:.3s}
+.a-cake .tier:nth-child(3){animation-delay:.5s}
+@keyframes cakeTier{to{transform:translateY(0);opacity:1}}
+.a-cake .flame{opacity:0;animation:cakeFlameIn .3s .8s forwards,cakeFlameFlick .5s .8s ease-in-out infinite}
+@keyframes cakeFlameIn{to{opacity:1}}
+@keyframes cakeFlameFlick{0%,100%{transform:scaleY(1) skewX(-3deg)}50%{transform:scaleY(1.22) skewX(4deg)}}
+
+/* --- 5. Музыка и танцы: диско-элемент вращается, ноты взлетают --- */
+.a-dance .disco{animation:danceSpin 6s linear infinite}
+@keyframes danceSpin{to{transform:rotate(360deg)}}
+.a-dance .note{opacity:0;animation:danceNote 2.4s ease-out infinite}
+.a-dance .note:nth-child(2){animation-delay:.8s}
+.a-dance .note:nth-child(3){animation-delay:1.6s}
+@keyframes danceNote{0%{opacity:0;transform:translateY(16px)}25%{opacity:1}100%{opacity:0;transform:translateY(-46px)}}
+.a-dance .beam{opacity:.2;animation:danceBeam 1.3s ease-in-out infinite}
+.a-dance .beam:nth-child(2){animation-delay:.4s}
+.a-dance .beam:nth-child(3){animation-delay:.8s}
+@keyframes danceBeam{0%,100%{opacity:.15}50%{opacity:.55}}
+
+/* --- 6. Проводы: звёзды мерцают, силуэт уезжает --- */
+.a-farewell .star{opacity:.2;animation:farewellStar 2.4s ease-in-out infinite}
+.a-farewell .star:nth-child(2){animation-delay:.5s}
+.a-farewell .star:nth-child(3){animation-delay:1s}
+@keyframes farewellStar{0%,100%{opacity:.2;transform:scale(.6)}50%{opacity:1;transform:scale(1.1)}}
+.a-farewell .depart{animation:farewellDepart 2.6s ease-in-out infinite}
+@keyframes farewellDepart{0%,100%{transform:translateX(0)}50%{transform:translateX(16px)}}
+
+@media (prefers-reduced-motion:reduce){
+  .tl-art *{animation:none !important}
+}
+
+/* ============================================================
+   МУЗЫКА — кнопка-индикатор в правом нижнем углу
+   ============================================================ */
+.music{
+  position:fixed;right:1rem;bottom:1rem;z-index:160;
+  width:48px;height:48px;border-radius:50%;
+  border:1px solid var(--accent);background:rgba(250,248,244,.92);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  box-shadow:0 10px 24px -12px rgba(43,38,34,.5);
+  display:grid;place-items:center;color:var(--accent);
+  opacity:0;transition:opacity .6s .8s;
+}
+.opened .music{opacity:1}
+.music.hidden{display:none}
+.music svg{width:20px;height:20px}
+.music .bars{display:none;align-items:flex-end;gap:2px;height:16px}
+.music .bars i{width:3px;height:5px;background:currentColor;border-radius:2px;animation:musicBar .9s ease-in-out infinite}
+.music .bars i:nth-child(2){animation-delay:.15s}
+.music .bars i:nth-child(3){animation-delay:.3s}
+.music .bars i:nth-child(4){animation-delay:.45s}
+@keyframes musicBar{0%,100%{height:5px}50%{height:16px}}
+.music.playing .bars{display:flex}
+.music.playing .note{display:none}
+@media (prefers-reduced-motion:reduce){.music .bars i{animation:none;height:10px}}
+
+/* ============================================================
+   МОБИЛЬНАЯ РАСКЛАДКА ВНУТРИ РАМКИ ФОТО
+   Фон масштабирован по высоте экрана, рамка на нём занимает
+   ~14–84% ширины картинки и ~18–87% высоты. Область контента
+   считается от высоты экрана в тех же долях, поэтому текст
+   остаётся внутри рамки на любом телефоне.
+   ============================================================ */
+.section,.hero,.footer{
+  height:100dvh;min-height:100dvh;box-sizing:border-box;
+  padding:20dvh 0 15dvh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  overflow:hidden;border:0;
+}
+.section--scrolly{overflow:hidden}
+.section > .measure,.hero > .frame4,.footer > .frame4{
+  width:min(37dvh, 100vw - 2.5rem);max-width:none;margin:0 auto;
+  max-height:65dvh;overflow-y:auto;scrollbar-width:none;
+}
+.section > .measure::-webkit-scrollbar,.hero > .frame4::-webkit-scrollbar,.footer > .frame4::-webkit-scrollbar{display:none}
+/* своя рамка и белые карточки больше не нужны — рамка есть на фото */
+.frame4{background:none;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0;margin:0}
+.frame4::before,.frame4::after,.frame4-corner{display:none}
+/* лёгкая белая подсветка под текстом — читаемость поверх акварели */
+.section,.hero,.footer{text-shadow:0 0 10px rgba(255,255,255,.9),0 0 22px rgba(255,255,255,.6)}
+/* компактнее, чтобы влезать в рамку на невысоких экранах */
+.heading{font-size:clamp(1.5rem,5.2vw,2rem)}
+.hero-greet{font-size:.95rem;max-width:none}
+.rule{height:1.6rem;margin:1rem auto}
+.cd-row{gap:1rem}
+.cd-num{font-size:1.9rem}
+.row{grid-template-columns:3.6rem 1fr;gap:.6rem;padding:.55rem 0}
+.row-h{font-size:1rem}
+.row-text{font-size:.9rem}
+.gal{gap:.5rem}
+.form{max-width:none}
+/* уплотнение формы и hero, чтобы влезать в рамку без внутренней прокрутки */
+.field{margin-bottom:.7rem}
+.field textarea{min-height:3.2rem}
+.form .btn{margin-top:.2rem;padding:.6rem 1rem}
+.lead{margin-top:.3rem;font-size:.95rem}
+.hero .monogram{width:clamp(36px,9vw,52px);height:clamp(36px,9vw,52px);margin-bottom:.2rem}
+.hero-names{max-width:19rem}
+.hero-date{margin-top:.4rem;font-size:1.15rem}
+@media (max-height:720px){
+  .hero-names{max-width:15rem}
+  .hero-greet{font-size:.88rem;line-height:1.5;margin-top:.8rem}
+  .rule{height:1rem;margin:.6rem auto}
+  .eyebrow{font-size:1rem;margin-bottom:.2rem}
+  .heading{font-size:clamp(1.35rem,5vw,1.7rem)}
+}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="l6-ring-wrap">
+    <svg class="monogram" viewBox="0 0 44 44" aria-hidden="true">
+      <rect class="ring" x="3" y="3" width="38" height="38" rx="8" pathLength="1"/>
+      <text x="13" y="27.5" text-anchor="middle" class="letter">I</text>
+      <text x="22" y="26.5" text-anchor="middle" class="amp">&amp;</text>
+      <text x="31" y="27.5" text-anchor="middle" class="letter">S</text>
+    </svg>
+  </div>
+  <div class="l6-text">
+    <span>Приглашение на свадьбу</span>
+    <strong>Islom &amp; Sabrina</strong>
+  </div>
+  <p class="l6-hint">Нажмите, чтобы открыть</p>
+</div>
+
+<div class="photo-bg"></div>
+<div class="sparks" aria-hidden="true">
+  <span class="spark" style="left:6%;--size:3px;--dur:8s;--delay:0s;--drift:15px;--peak:.8"></span>
+  <span class="spark" style="left:14%;--size:2px;--dur:11s;--delay:1.5s;--drift:-10px;--peak:.6"></span>
+  <span class="spark" style="left:22%;--size:4px;--dur:9.5s;--delay:3s;--drift:20px;--peak:.9"></span>
+  <span class="spark" style="left:31%;--size:2px;--dur:10s;--delay:.7s;--drift:-15px;--peak:.55"></span>
+  <span class="spark" style="left:40%;--size:3px;--dur:8.5s;--delay:4s;--drift:10px;--peak:.75"></span>
+  <span class="spark" style="left:49%;--size:2px;--dur:12s;--delay:2.2s;--drift:-20px;--peak:.6"></span>
+  <span class="spark" style="left:57%;--size:4px;--dur:9s;--delay:5s;--drift:18px;--peak:.85"></span>
+  <span class="spark" style="left:66%;--size:2px;--dur:10.5s;--delay:.3s;--drift:-12px;--peak:.6"></span>
+  <span class="spark" style="left:74%;--size:3px;--dur:8s;--delay:3.5s;--drift:14px;--peak:.8"></span>
+  <span class="spark" style="left:82%;--size:2px;--dur:11.5s;--delay:1.8s;--drift:-18px;--peak:.55"></span>
+  <span class="spark" style="left:90%;--size:3px;--dur:9.5s;--delay:4.6s;--drift:12px;--peak:.75"></span>
+  <span class="spark" style="left:96%;--size:2px;--dur:10s;--delay:2.8s;--drift:-8px;--peak:.6"></span>
+</div>
+
+<header class="hero">
+  <div class="frame4">
+    <div class="frame4-corner tl"></div>
+    <div class="frame4-corner tr"></div>
+    <div class="frame4-corner bl"></div>
+    <div class="frame4-corner br"></div>
+  <svg class="monogram" viewBox="0 0 44 44" aria-hidden="true">
+    <rect class="ring" x="3" y="3" width="38" height="38" rx="8"/>
+    <text x="13" y="27.5" text-anchor="middle" class="letter">I</text>
+    <text x="22" y="26.5" text-anchor="middle" class="amp">&amp;</text>
+    <text x="31" y="27.5" text-anchor="middle" class="letter">S</text>
+  </svg>
+  <span class="eyebrow">Приглашение на свадьбу</span>
+  <h1 class="hero-names">
+    <svg viewBox="0 0 460 300" aria-label="Islom & Sabrina">
+      <text x="230" y="90" text-anchor="middle">Islom</text>
+      <text x="230" y="170" text-anchor="middle" class="amp-text">&amp;</text>
+      <text x="230" y="260" text-anchor="middle">Sabrina</text>
+    </svg>
+  </h1>
+  <p class="hero-date">17 октября 2027<small>Воскресенье · 18:00 · Самарканд</small></p>
+  <div class="rule"></div>
+  <p class="hero-greet">Дорогие гости! Будем рады видеть вас в самый прекрасный день нашей жизни — на нашей свадьбе.</p>
+  </div>
+</header>
+
+<section class="section" id="countdown">
+  <div class="measure">
+    <div class="frame4">
+      <div class="frame4-corner tl"></div>
+    <div class="frame4-corner tr"></div>
+    <div class="frame4-corner bl"></div>
+    <div class="frame4-corner br"></div>
+    <span class="eyebrow">Обратный отсчёт</span>
+    <h2 class="heading">До свадьбы осталось</h2>
+    <div class="cd-row" id="cd">
+      <div><span class="cd-num" data-u="d">00</span><span class="cd-label">дней</span></div>
+      <div><span class="cd-num" data-u="h">00</span><span class="cd-label">часов</span></div>
+      <div><span class="cd-num" data-u="m">00</span><span class="cd-label">минут</span></div>
+      <div><span class="cd-num" data-u="s">00</span><span class="cd-label">секунд</span></div>
+    </div>
+    <div class="btn-row" style="margin-top:1.8rem">
+      <a class="btn" id="addCalendarBtn" target="_blank" rel="noopener">Добавить в календарь</a>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="story">
+  <div class="measure">
+    <div class="frame4">
+      <div class="frame4-corner tl"></div>
+    <div class="frame4-corner tr"></div>
+    <div class="frame4-corner bl"></div>
+    <div class="frame4-corner br"></div>
+    <span class="eyebrow">Два сердца</span>
+    <h2 class="heading">Наша история</h2>
+    <div class="rows">
+      <div class="row"><span class="row-mark">2023</span><div><h3 class="row-h">Первая встреча</h3><p class="row-text">Была весна. Случайный разговор у Регистана растянулся на целый час.</p></div></div>
+      <div class="row"><span class="row-mark">2025</span><div><h3 class="row-h">День, когда прозвучало «да»</h3><p class="row-text">Осенний вечер, одно кольцо и долгожданное слово.</p></div></div>
+      <div class="row"><span class="row-mark">2026</span><div><h3 class="row-h">Сватовство</h3><p class="row-text">Две семьи собрались за одним столом.</p></div></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--scrolly" id="program">
+  <div class="measure">
+    <div class="frame4">
+      <div class="frame4-corner tl"></div>
+    <div class="frame4-corner tr"></div>
+    <div class="frame4-corner bl"></div>
+    <div class="frame4-corner br"></div>
+    <span class="eyebrow">17 октября</span>
+    <h2 class="heading">Программа дня</h2>
+    <div class="rows">
+      <div class="row"><span class="row-mark">11:00</span><div><h3 class="row-h">Никох</h3><p class="row-text">Мечеть Хазрати Хизр.</p></div></div>
+      <div class="row"><span class="row-mark">18:00</span><div><h3 class="row-h">Встреча гостей</h3><p class="row-text">Банкетный зал «Majestic».</p></div></div>
+      <div class="row"><span class="row-mark">19:00</span><div><h3 class="row-h">Праздничный стол</h3><p class="row-text">Поздравления и благословения.</p></div></div>
+      <div class="row"><span class="row-mark">21:00</span><div><h3 class="row-h">Свадебный торт</h3><p class="row-text">Свечи и поздравления.</p></div></div>
+      <div class="row"><span class="row-mark">21:30</span><div><h3 class="row-h">Музыка и танцы</h3><p class="row-text">Танцпол открыт.</p></div></div>
+      <div class="row"><span class="row-mark">23:00</span><div><h3 class="row-h">Проводы</h3><p class="row-text">Завершение вечера.</p></div></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="venue">
+  <div class="measure">
+    <div class="frame4">
+      <div class="frame4-corner tl"></div>
+    <div class="frame4-corner tr"></div>
+    <div class="frame4-corner bl"></div>
+    <div class="frame4-corner br"></div>
+    <span class="eyebrow">Место проведения</span>
+    <h2 class="heading">Где мы вас ждём</h2>
+    <h3 class="venue-name">Majestic</h3>
+    <p class="lead">г. Самарканд, банкетный зал «Majestic»</p>
+    <div class="btn-row">
+      <a class="btn" id="mapYandex" target="_blank" rel="noopener">Яндекс Карты</a>
+      <a class="btn" id="mapGoogle" target="_blank" rel="noopener">Google Maps</a>
+      <a class="btn" id="map2Gis" target="_blank" rel="noopener">2GIS</a>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="measure" style="max-width:42rem">
+    <div class="frame4">
+      <div class="frame4-corner tl"></div>
+    <div class="frame4-corner tr"></div>
+    <div class="frame4-corner bl"></div>
+    <div class="frame4-corner br"></div>
+    <span class="eyebrow">Моменты</span>
+    <h2 class="heading">Галерея</h2>
+    <div class="gal" id="gal"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="rsvp">
+  <div class="measure">
+    <div class="frame4">
+      <div class="frame4-corner tl"></div>
+    <div class="frame4-corner tr"></div>
+    <div class="frame4-corner bl"></div>
+    <div class="frame4-corner br"></div>
+    <span class="eyebrow">Ответ</span>
+    <h2 class="heading">Подтвердите присутствие</h2>
+    <p class="lead">Пожалуйста, ответьте до 10 октября.</p>
+    <form class="form" id="rsvpForm">
+      <div class="field"><label for="name">Ваше имя и фамилия</label><input id="name" name="name" placeholder="Например: Алишер и Мадина" required></div>
+      <div class="field"><label>Вы придёте?</label>
+        <div class="choice">
+          <label><input type="radio" name="attending" value="yes" checked> Да, с радостью!</label>
+          <label><input type="radio" name="attending" value="no"> К сожалению, нет</label>
+        </div>
+      </div>
+      <div class="field"><label for="guests">Количество гостей</label><input id="guests" name="guests" type="number" min="1" value="1"></div>
+      <div class="field"><label for="msg">Ваши пожелания</label><textarea id="msg" name="message" placeholder="Текст вашего поздравления..."></textarea></div>
+      <button class="btn" type="submit" id="rsvpBtn">Отправить ответ</button>
+      <p class="status" id="rsvpStatus"></p>
+    </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="frame4">
+    <div class="frame4-corner tl"></div>
+    <div class="frame4-corner tr"></div>
+    <div class="frame4-corner bl"></div>
+    <div class="frame4-corner br"></div>
+  <p class="footer-closing">Будем рады вас видеть</p>
+  <div class="contacts">
+    <a href="tel:+998900000000"><small>Со стороны жениха</small>+998 90 000 00 00</a>
+    <a href="tel:+998900000001"><small>Со стороны невесты</small>+998 90 000 00 01</a>
+  </div>
+  </div>
+</footer>
+
+<audio id="audio" loop preload="auto"></audio>
+<button class="music" id="music" aria-label="Музыка" aria-pressed="false">
+  <svg class="note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 18V6l10-2v12" stroke-linecap="round"/><circle cx="7" cy="18" r="2.5"/><circle cx="17" cy="16" r="2.5"/></svg>
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
+
+<script>
+// Загрузочный экран: сначала дочерчивается кольцо и проступает текст,
+// затем экран уходит и запускается конверт как обычно
+(()=>{
+  const loader = document.getElementById('loader');
+  requestAnimationFrame(()=>loader.classList.add('play'));
+  let opened = false;
+  const open = () => {
+    if (opened) return; opened = true;
+    loader.classList.remove('wait');
+    loader.classList.add('gone');
+    document.body.classList.add('opened');
+    launchConfetti();
+  };
+  setTimeout(()=>{
+    const ctl = window.musicCtl;
+    // музыки нет или файл не нашёлся — открываем сразу
+    if (!ctl || ctl.unavailable()) { open(); return; }
+    // пробуем включить без касания; браузер разрешил — открываем автоматически
+    ctl.play().then(open).catch(()=>{
+      // заблокировано — ждём касания: play() вызывается прямо в обработчике жеста,
+      // именно это и разблокирует звук в Safari/Chrome
+      loader.classList.add('wait');
+      const onTap = () => { ctl.play().catch(()=>{}); open(); };
+      loader.addEventListener('click', onTap, {once:true});
+      loader.addEventListener('touchend', onTap, {once:true, passive:true});
+    });
+  }, 2900);
+})();
+
+// Конфетти — два залпа с боковых сторон экрана вверх, запускается
+// точно в момент ухода загрузочного экрана
+function launchConfetti(){
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const w = window.innerWidth, h = window.innerHeight;
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  // цвет — строго в палитре падающих искр (тёплое золото),
+  // без посторонних оттенков
+  const colors = ['#e2cc98', '#b8975b', '#a3bc9a', '#cfdcc7'];
+  const gravity = 0.16; // медленнее падают
+  const particles = [];
+
+  // залп из левого нижнего угла — летит вверх-вправо веером, выше и медленнее
+  for (let i = 0; i < 140; i++) {
+    const angle = (-88 + Math.random() * 36) * Math.PI / 180; // почти строго вверх
+    const speed = 15 + Math.random() * 9; // выше залп
+    particles.push({
+      x: 0, y: h,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      size: 4 + Math.random() * 5,
+      color: colors[i % colors.length],
+      rot: Math.random() * Math.PI * 2,
+      vrot: (Math.random() - 0.5) * 0.22, // медленнее вращаются
+      shape: Math.random() < 0.5 ? 'rect' : 'circle',
+    });
+  }
+  // залп из правого нижнего угла — зеркально, вверх-влево
+  for (let i = 0; i < 140; i++) {
+    const angle = (180 + 88 - Math.random() * 36) * Math.PI / 180;
+    const speed = 15 + Math.random() * 9;
+    particles.push({
+      x: w, y: h,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      size: 4 + Math.random() * 5,
+      color: colors[i % colors.length],
+      rot: Math.random() * Math.PI * 2,
+      vrot: (Math.random() - 0.5) * 0.22,
+      shape: Math.random() < 0.5 ? 'rect' : 'circle',
+    });
+  }
+
+  let frame = 0;
+  const maxFrames = 320; // дольше висят в воздухе перед тем как погаснуть
+  function tick(){
+    frame++;
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.vy += gravity;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vrot;
+      p.vx *= 0.992; // лёгкое сопротивление воздуха
+      const fade = frame > maxFrames - 40 ? Math.max(0, (maxFrames - frame) / 40) : 1;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.globalAlpha = fade;
+      ctx.fillStyle = p.color;
+      if (p.shape === 'rect') {
+        ctx.fillRect(-p.size / 2, -p.size / 3, p.size, p.size * 0.6);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    });
+    if (frame < maxFrames) {
+      requestAnimationFrame(tick);
+    } else {
+      ctx.clearRect(0, 0, w, h);
+    }
+  }
+  requestAnimationFrame(tick);
+}
+(()=>{
+requestAnimationFrame(()=>document.querySelector('.hero').classList.add('animate'));
+
+const DATA = {
+  date: '2027-10-17T18:00:00+05:00',
+  venue: { lat: 39.6542, lng: 66.9597 },
+  rsvp: { endpoint: '', telegram: 'islom_toy' },
+  photos: [], // пусто — сейчас показываются плейсхолдеры; впишите пути к своим фото, например: 'photos/1.jpg'
+  music: 'music.mp3', // положите свой аудиофайл рядом с этим HTML; без файла кнопка скроется сама
+};
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+// Музыка: кнопка в углу переключает play/pause, индикатор-«эквалайзер»
+// показывает, что играет. Если файла нет — кнопка скрывается.
+window.musicCtl = (()=>{
+  const audio = $('#audio'), btn = $('#music');
+  audio.src = DATA.music;
+  audio.addEventListener('error', ()=>btn.classList.add('hidden'));
+  const set = p => { btn.classList.toggle('playing', p); btn.setAttribute('aria-pressed', String(p)); };
+  let unavailable = false;
+  audio.addEventListener('error', ()=>{ unavailable = true; });
+  const play = () => audio.play().then(()=>set(true)).catch(err=>{ set(false); throw err; });
+  const tryPlay = () => play().catch(()=>{});
+  btn.addEventListener('click', ()=> audio.paused ? tryPlay() : (audio.pause(), set(false)));
+  // браузеры блокируют автозапуск без жеста пользователя — запускаем при первом же
+  // касании/клике/скролле, один раз, и только если пользователь сам не выключил
+  let armed = true;
+  // touchend/click/pointerup — это то, что iOS Safari засчитывает как жест
+  // пользователя для запуска звука (touchstart — нет); wheel/keydown — для десктопа.
+  // Скролл у страницы идёт по body (scroll-snap), и он не всплывает до window —
+  // поэтому слушаем прокрутку и на body тоже.
+  const EVENTS = ['touchend','click','pointerup','keydown','wheel','scroll'];
+  const TARGETS = [window, document.body];
+  const onFirstGesture = () => {
+    if (!armed) return;
+    armed = false;
+    if (audio.paused && !btn.classList.contains('hidden')) tryPlay();
+    TARGETS.forEach(t => EVENTS.forEach(ev => t.removeEventListener(ev, onFirstGesture, true)));
+  };
+  TARGETS.forEach(t => EVENTS.forEach(ev => t.addEventListener(ev, onFirstGesture, {capture:true, passive:true})));
+  btn.addEventListener('click', ()=>{ armed = false; });
+  // страховка: показать кнопку через 5 с, даже если цепочка загрузки не отработала
+  setTimeout(()=>document.body.classList.add('opened'), 5000);
+  return { tryPlay, play, unavailable: () => unavailable };
+})();
+
+// Ссылка «Добавить в календарь» — событие на 5 часов от даты/времени свадьбы
+{
+  const start = new Date(DATA.date);
+  const end = new Date(start.getTime() + 5 * 3600e3);
+  const fmt = d => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: 'Свадьба Islom & Sabrina',
+    dates: `${fmt(start)}/${fmt(end)}`,
+    location: 'Самарканд, банкетный зал «Majestic»',
+  });
+  $('#addCalendarBtn').href = `https://calendar.google.com/calendar/render?${params}`;
+}
+
+
+// Если фото не заданы в DATA.photos — показываем 6 SVG-плейсхолдеров
+// (не внешние запросы, рисуются прямо в браузере). Как только впишете
+// свои пути в DATA.photos выше, эта заглушка исчезнет сама.
+const PLACEHOLDER_COUNT = 4;
+$('#gal').innerHTML = (DATA.photos.length ? DATA.photos.map((s,i)=>`<img src="${s}" alt="Фото ${i+1}" loading="lazy" onerror="this.style.visibility='hidden'">`) : Array.from({length:PLACEHOLDER_COUNT},(_,i)=>{
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#e8eee2"/><g fill="none" stroke="#b8975b" stroke-width="1.5" opacity=".6"><rect x="24" y="24" width="352" height="452"/><path d="M24 380 L140 260 L200 320 L280 220 L376 340"/><circle cx="120" cy="110" r="34"/></g><text x="200" y="470" font-family="Georgia,serif" font-size="20" fill="#5d6a5a" text-anchor="middle">Фото ${i+1}</text></svg>`;
+  return `<img src="data:image/svg+xml,${encodeURIComponent(svg)}" alt="Место для фотографии ${i+1}">`;
+})).join('');
+$('#mapYandex').href = `https://yandex.uz/maps/?pt=${DATA.venue.lng},${DATA.venue.lat}&z=17`;
+$('#mapGoogle').href = `https://maps.google.com/?q=${DATA.venue.lat},${DATA.venue.lng}`;
+$('#map2Gis').href = `https://2gis.uz/geo/${DATA.venue.lng},${DATA.venue.lat}`;
+
+(()=>{
+  const target=new Date(DATA.date).getTime(), nums=Object.fromEntries($$('.cd-num').map(n=>[n.dataset.u,n]));
+  const tick=()=>{
+    const ms=Math.max(0,target-Date.now());
+    nums.d.textContent=String(ms/864e5|0).padStart(2,'0');
+    nums.h.textContent=String(ms/36e5%24|0).padStart(2,'0');
+    nums.m.textContent=String(ms/6e4%60|0).padStart(2,'0');
+    nums.s.textContent=String(ms/1e3%60|0).padStart(2,'0');
+  };
+  tick(); setInterval(tick,1000);
+})();
+
+$('#rsvpForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const d=Object.fromEntries(new FormData(e.target).entries());
+  const status=$('#rsvpStatus');
+  if(!d.name.trim()){status.textContent='Введите ваше имя.';return}
+  if(DATA.rsvp.endpoint){
+    try{
+      await fetch(DATA.rsvp.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+      status.textContent='Спасибо! Ваш ответ принят.';
+    }catch{status.textContent='Ошибка отправки. Пожалуйста, сообщите по телефону.'}
+  }else{
+    const text=`${d.name}\nПридёт: ${d.attending==='yes'?'Да':'Нет'}\nГостей: ${d.guests||1}${d.message?'\n'+d.message:''}`;
+    open(`https://t.me/${DATA.rsvp.telegram}?text=${encodeURIComponent(text)}`,'_blank');
+    status.textContent='Спасибо! Ваш ответ принят.';
+  }
+  e.target.reset();
+});
+})();
+</script>
+<canvas id="confetti" aria-hidden="true" style="position:fixed;inset:0;z-index:150;pointer-events:none"></canvas>
+
+</body>
+</html>
