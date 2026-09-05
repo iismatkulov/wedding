@@ -11,11 +11,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f7f8f4;
-  --ink:#2f3a2e;
-  --ink-soft:#5d6a5a;
-  --accent:#b8975b;
-  --line:rgba(184,151,91,.45);
+  --bg:#efe6dc;
+  --ink:#4a3a2f;
+  --ink-soft:#7d6b5d;
+  --accent:#b08d57;
+  --line:rgba(176,141,87,.45);
 
   --script:'Great Vibes',cursive;
   --display:'Cormorant Garamond',serif;
@@ -52,7 +52,7 @@ body{
   background:var(--bg) url('bg.jpg') center top / cover no-repeat;
 }
 /* на широких экранах (планшет горизонтально, десктоп) — по высоте, чтобы не резать рамку */
-@media (min-aspect-ratio: 1080/1828){
+@media (min-aspect-ratio: 736/1308){
   .photo-bg{background-size:auto 100%}
 }
 html{background:var(--bg)}
@@ -447,24 +447,24 @@ button{font:inherit;cursor:pointer}
    остаётся внутри рамки на любом телефоне.
    ============================================================ */
 .section,.hero,.footer{
-  height:100vh;min-height:100vh;padding:17vh 0 16vh;
+  height:100vh;min-height:100vh;padding:20vh 0 20vh;
   height:100dvh;min-height:100dvh;box-sizing:border-box;
-  padding:17dvh 0 16dvh;
+  padding:20dvh 0 20dvh;
   display:flex;flex-direction:column;justify-content:center;align-items:center;
   overflow:hidden;border:0;
 }
 .section--scrolly{overflow:hidden}
 .section > .measure,.hero > .frame4,.footer > .frame4{
-  width:min(39vh, 100vw - 2.5rem);max-height:67vh;
-  width:min(39dvh, 100vw - 2.5rem);max-width:none;margin:0 auto;
-  max-height:67dvh;overflow-y:auto;scrollbar-width:none;
+  width:min(38vh, 100vw - 2.5rem);max-height:60vh;
+  width:min(38dvh, 100vw - 2.5rem);max-width:none;margin:0 auto;
+  max-height:60dvh;overflow-y:auto;scrollbar-width:none;
 }
 .section > .measure::-webkit-scrollbar,.hero > .frame4::-webkit-scrollbar,.footer > .frame4::-webkit-scrollbar{display:none}
 /* своя рамка и белые карточки больше не нужны — рамка есть на фото */
 .frame4{background:none;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0;margin:0}
 .frame4::before,.frame4::after,.frame4-corner{display:none}
 /* лёгкая белая подсветка под текстом — читаемость поверх акварели */
-.section,.hero,.footer{text-shadow:0 0 10px rgba(255,255,255,.9),0 0 22px rgba(255,255,255,.6)}
+.section,.hero,.footer{text-shadow:0 0 10px rgba(242,234,224,.95),0 0 22px rgba(242,234,224,.7)}
 /* компактнее, чтобы влезать в рамку на невысоких экранах */
 .heading{font-size:clamp(1.5rem,5.2vw,2rem)}
 .hero-greet{font-size:.95rem;max-width:none}
@@ -477,9 +477,12 @@ button{font:inherit;cursor:pointer}
 .gal{gap:.5rem}
 .form{max-width:none}
 /* уплотнение формы и hero, чтобы влезать в рамку без внутренней прокрутки */
-.field{margin-bottom:.7rem}
-.field textarea{min-height:3.2rem}
-.form .btn{margin-top:.2rem;padding:.6rem 1rem}
+.field{margin-bottom:.45rem}
+.field label{margin-bottom:.15rem;font-size:.85rem}
+.field input,.field textarea{padding:.3rem 0}
+.field textarea{min-height:2.4rem}
+.status{min-height:0;margin-top:.3rem}
+.form .btn{margin-top:.1rem;padding:.5rem 1rem;font-size:.9rem}
 .lead{margin-top:.3rem;font-size:.95rem}
 .hero .monogram{width:clamp(36px,9vw,52px);height:clamp(36px,9vw,52px);margin-bottom:.2rem}
 .hero-names{max-width:19rem}
@@ -603,7 +606,6 @@ button{font:inherit;cursor:pointer}
     <span class="eyebrow">17 октября</span>
     <h2 class="heading">Программа дня</h2>
     <div class="rows">
-      <div class="row"><span class="row-mark">11:00</span><div><h3 class="row-h">Никох</h3><p class="row-text">Мечеть Хазрати Хизр.</p></div></div>
       <div class="row"><span class="row-mark">18:00</span><div><h3 class="row-h">Встреча гостей</h3><p class="row-text">Банкетный зал «Majestic».</p></div></div>
       <div class="row"><span class="row-mark">19:00</span><div><h3 class="row-h">Праздничный стол</h3><p class="row-text">Поздравления и благословения.</p></div></div>
       <div class="row"><span class="row-mark">21:00</span><div><h3 class="row-h">Свадебный торт</h3><p class="row-text">Свечи и поздравления.</p></div></div>
@@ -738,7 +740,7 @@ function launchConfetti(){
 
   // цвет — строго в палитре падающих искр (тёплое золото),
   // без посторонних оттенков
-  const colors = ['#e2cc98', '#b8975b', '#a3bc9a', '#cfdcc7'];
+  const colors = ['#d9bf95', '#b08d57', '#e6c9bd', '#f0e2d4'];
   const gravity = 0.16; // медленнее падают
   const particles = [];
 
@@ -873,7 +875,7 @@ window.musicCtl = (()=>{
 // свои пути в DATA.photos выше, эта заглушка исчезнет сама.
 const PLACEHOLDER_COUNT = 4;
 $('#gal').innerHTML = (DATA.photos.length ? DATA.photos.map((s,i)=>`<img src="${s}" alt="Фото ${i+1}" loading="lazy" onerror="this.style.visibility='hidden'">`) : Array.from({length:PLACEHOLDER_COUNT},(_,i)=>{
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#e8eee2"/><g fill="none" stroke="#b8975b" stroke-width="1.5" opacity=".6"><rect x="24" y="24" width="352" height="452"/><path d="M24 380 L140 260 L200 320 L280 220 L376 340"/><circle cx="120" cy="110" r="34"/></g><text x="200" y="470" font-family="Georgia,serif" font-size="20" fill="#5d6a5a" text-anchor="middle">Фото ${i+1}</text></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#e9dccf"/><g fill="none" stroke="#b08d57" stroke-width="1.5" opacity=".6"><rect x="24" y="24" width="352" height="452"/><path d="M24 380 L140 260 L200 320 L280 220 L376 340"/><circle cx="120" cy="110" r="34"/></g><text x="200" y="470" font-family="Georgia,serif" font-size="20" fill="#7d6b5d" text-anchor="middle">Фото ${i+1}</text></svg>`;
   return `<img src="data:image/svg+xml,${encodeURIComponent(svg)}" alt="Место для фотографии ${i+1}">`;
 })).join('');
 $('#mapYandex').href = `https://yandex.uz/maps/?pt=${DATA.venue.lng},${DATA.venue.lat}&z=17`;
